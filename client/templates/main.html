@@ -3,8 +3,8 @@
   <title>My study application</title>
 </head>
 <body>
-<div class="container-fluid">
-  <div class="row">
+<div class="wrapper container-fluid">
+  <div>
     {{> messages}}
   </div>
 </div>
@@ -13,9 +13,16 @@
 <template name="messages">
   <ul>
     {{#each messages}}
-      <li>{{text}}</li>
+      {{>message}}
     {{/each}}
   </ul>
-  <input type="text" class="form-control" placeholder="Text input" data-text>
-  <a href="#" class="btn btn-primary btn-lg btn-block">Block level button</a>
+  <div class="container">
+    <input type="text" class="form-control" placeholder="Text input" data-text>
+  </div>
+  <a href="#" class="btn btn-primary btn-lg btn-block" id="add">Add message</a>
 </template>
+
+<template name="message">
+  <li>{{text}} <a href="#" data-remove-item id="{{_id}}"><i class="glyphicon glyphicon-trash"></i>Delete</a></li>
+</template>
+
