@@ -1,0 +1,21 @@
+<head>
+  <meta charset="UTF-8">
+  <title>My study application</title>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    {{> messages}}
+  </div>
+</div>
+</body>
+
+<template name="messages">
+  <ul>
+    {{#each messages}}
+      <li>{{text}}</li>
+    {{/each}}
+  </ul>
+  <input type="text" class="form-control" placeholder="Text input" data-text>
+  <a href="#" class="btn btn-primary btn-lg btn-block">Block level button</a>
+</template>
