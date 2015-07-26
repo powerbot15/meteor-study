@@ -1,2 +1,2 @@
 Meteor.subscribe('messages');
-Meteor.subscribe('userData', Meteor.userId());
+Meteor.subscribe('userData');

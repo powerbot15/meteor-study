@@ -16,16 +16,21 @@ Template.message.events({
 });
 
 Template.message.helpers({
-   'owner' : function(){
-       return this.userId == Meteor.userId();
-   },
+    'owner' : function(){
+        return this.userId == Meteor.userId();
+    },
     'isSigned' : function(){
         return Meteor.userId();
     },
     'emailC' : function(){
-        return this.email || 'Unknown';
+        if(!Meteor.userId()){
+            return '';
+        }
+        var messageOwner = getUserInfo(this.userId);
+        return getUserEmail(messageOwner);
     }
 });
+
 function addMessage(e){
     e.preventDefault();
     if(!Meteor.userId()){
@@ -45,13 +50,21 @@ function addMessage(e){
         noty({text : 'Already exists', type : 'warning', timeout : 2000});
         return;
     }
-    console.dir( Meteor.users.find().fetch());
     Messages.insert({
         text : messageText,
         userId : Meteor.userId(),
-        email : Meteor.users.find().fetch()[0].emails[0].address
+        email : getUserEmail(Meteor.user())
 
     })
+}
 
+function getUserInfo(userId){
+    return Meteor.users.find({_id : userId}).fetch()[0];
+}
 
+function getUserEmail(user){
+    if(!user){
+        return 'Undefined';
+    }
+    return user.emails[0].address || 'Undefined';
 }
