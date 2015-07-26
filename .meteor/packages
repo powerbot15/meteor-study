@@ -8,3 +8,5 @@ meteor-platform
 insecure
 twbs:bootstrap
 jeremy:noty
+accounts-ui
+accounts-password

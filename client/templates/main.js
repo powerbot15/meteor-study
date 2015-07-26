@@ -15,8 +15,23 @@ Template.message.events({
     }
 });
 
+Template.message.helpers({
+   'owner' : function(){
+       return this.userId == Meteor.userId();
+   },
+    'isSigned' : function(){
+        return Meteor.userId();
+    },
+    'emailC' : function(){
+        return this.email || 'Unknown';
+    }
+});
 function addMessage(e){
     e.preventDefault();
+    if(!Meteor.userId()){
+        noty({ text : 'Please sign in!', type : 'error', timeout : 2000});
+        return;
+    }
     var template = Template.instance(),
         messageText = template.$('[data-text]').val(),
         alreadyExists;
@@ -30,8 +45,12 @@ function addMessage(e){
         noty({text : 'Already exists', type : 'warning', timeout : 2000});
         return;
     }
+    console.dir( Meteor.users.find().fetch());
     Messages.insert({
-        text : messageText
+        text : messageText,
+        userId : Meteor.userId(),
+        email : Meteor.users.find().fetch()[0].emails[0].address
+
     })
 
 

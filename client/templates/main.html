@@ -3,6 +3,10 @@
   <title>My study application</title>
 </head>
 <body>
+<div class="login">
+    {{> loginButtons align="right"}}
+</div>
+
 <div class="wrapper container-fluid">
   <div>
     {{> messages}}
@@ -23,6 +27,6 @@
 </template>
 
 <template name="message">
-  <li>{{text}} <a href="#" data-remove-item id="{{_id}}"><i class="glyphicon glyphicon-trash"></i>Delete</a></li>
+  <li>{{#if isSigned}}{{emailC}} : {{/if}}{{text}} {{#if owner}}<a href="#" data-remove-item id="{{_id}}"><i class="glyphicon glyphicon-trash"></i>Delete</a>{{/if}}</li>
 </template>
 

@@ -1,2 +1,2 @@
 Meteor.subscribe('messages');
-Messages = new Mongo.Collection('messages');
+Meteor.subscribe('userData', Meteor.userId());
