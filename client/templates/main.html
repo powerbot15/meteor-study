@@ -8,7 +8,7 @@
 </div>
 
 <div class="wrapper container-fluid">
-  <div>
+  <div class="col-md-6 col-md-offset-3">
     {{> messages}}
   </div>
 </div>
@@ -20,13 +20,13 @@
       {{>message}}
     {{/each}}
   </ul>
-  <div class="container">
+  <div >
     <input type="text" class="form-control" placeholder="Text input" data-text>
   </div>
   <a href="#" class="btn btn-primary btn-lg btn-block" id="add">Add message</a>
 </template>
 
 <template name="message">
-  <li>{{#if isSigned}}{{emailC}} : {{/if}}{{text}} {{#if owner}}<a href="#" data-remove-item id="{{_id}}"><i class="glyphicon glyphicon-trash"></i>Delete</a>{{/if}}</li>
+  <li>{{#if isSigned}}{{emailC}} : {{/if}}{{text}} {{#if owner}}<a href="#" data-remove-item id="{{_id}}" class="remove"><i class="glyphicon glyphicon-trash"></i>Delete</a>{{/if}}</li>
 </template>
 
